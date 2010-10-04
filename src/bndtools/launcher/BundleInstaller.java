@@ -16,9 +16,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +47,7 @@ class BundleInstaller implements Runnable {
 	private final BundleContext framework;
 	private final Runnable errorCallback;
 
-	private final Map<String, Bundle> locationsMap = new HashMap<String, Bundle>();
+	private final Map<String, Bundle> locationsMap = new LinkedHashMap<String, Bundle>();
 	private final Set<Long> startAttempted = new HashSet<Long>();
 	private long propsLastUpdated = 0L;
 
@@ -94,7 +94,7 @@ class BundleInstaller implements Runnable {
 	void synchronizeBundles() {
 		long lastModified = propsFile.lastModified();
 
-		Map<String, Integer> toInstall = new HashMap<String, Integer>();
+		Map<String, Integer> toInstall = new LinkedHashMap<String, Integer>();
 		List<Bundle> toRemove = new LinkedList<Bundle>();
 		int defaultStart = START;
 
